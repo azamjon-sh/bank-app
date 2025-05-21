@@ -1,3 +1,3 @@
 <template>
-  <AppTitle>Главная</AppTitle>
+  <AppTitle>Советы</AppTitle>
 </template>

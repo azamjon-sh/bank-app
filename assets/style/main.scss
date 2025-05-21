@@ -1,11 +1,9 @@
-:root {
-  --color-primary: 30 64 175;    /* #1e40af */
-  --color-secondary: 100 116 139; /* #64748b */
-  --color-accent: 245 158 11;    /* #f59e0b */
-}
-
-.dark {
-  --color-primary: 59 130 246;   /* #3b82f6 */
-  --color-secondary: 148 163 184; /* #94a3b8 */
-  --color-accent: 250 204 21;    /* #facc15 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+body, html {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-style: normal;
 }

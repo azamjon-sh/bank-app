@@ -1,3 +1,3 @@
 <template>
-  <AppTitle>Советы</AppTitle>
+  <AppTitle>Профиль</AppTitle>
 </template>
