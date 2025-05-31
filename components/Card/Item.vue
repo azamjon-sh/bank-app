@@ -38,7 +38,7 @@ const grid = ref([
       <div class="card__categories__value text-lg text-black">{{ card.categories }}</div>
     </div>
 
-    <AppButton>Заказать карту</AppButton>
+    <AppButton >Заказать карту</AppButton>
 
 
   </div>

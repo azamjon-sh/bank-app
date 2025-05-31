@@ -8,4 +8,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL || 'http://127.0.0.1:3000/',
+    },
+  },
 })

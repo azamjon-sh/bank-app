@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+$default: #F3F6F8;
+$white: #ffffff;
+$gray-1: #DFDFDF;
+$black: #0A0A0A;
+$gray: #627286;
+$green: #0FB90F;
+
 body, html {
   font-family: "Inter", sans-serif;
   font-weight: normal;
   font-style: normal;
+}
+
+.menu__item {
+  transition: .3s all;
+  flex: 0 0 67px;
+  max-width: 67px;
+  color: $gray;
+  &.router-link-active{
+    font-weight: bold;
+    color: $black;
+  }
 }

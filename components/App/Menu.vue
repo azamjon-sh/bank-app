@@ -5,25 +5,25 @@ const router = useRouter();
 <template>
   <div class="menu fixed bottom-0 z-30 w-full bg-white pt-3 pb-9 flex justify-center">
     <Transition>
-      <div class="menu__grid w-[425px] flex justify-evenly items-center">
-        <NuxtLink to="/home" class="menu__item flex justify-center items-center flex-col gap-1">
-          <img src="/assets/images/home.svg" alt="">
-          <h4 class="text-xs text-gray">Главная</h4>
+      <div class="menu__grid w-[425px] flex justify-between items-center  ">
+        <NuxtLink to="/" class="menu__item  flex justify-center items-center flex-col gap-1">
+          <AppIcon icon="home"/>
+          <h4 class="text-xs ">Главная</h4>
         </NuxtLink>
-        <NuxtLink to="/advices" class="menu__item flex justify-center items-center flex-col gap-1">
-          <img src="/assets/images/chart.svg" alt="">
-          <h4 class="text-xs text-gray">Советы</h4>
+        <NuxtLink to="/advices" class="menu__item  flex justify-center items-center flex-col gap-1">
+          <AppIcon icon="advices"/>
+          <h4 class="text-xs ">Советы</h4>
         </NuxtLink>
-        <div class="menu__ai">
-          <img src="/assets/images/ai.png" alt="">
+        <div class="menu__ai h-12 w-12">
+          <img src="/assets/images/ai.png" alt="" class="w-full">
         </div>
-        <NuxtLink to="/" class="menu__item flex justify-center items-center flex-col gap-1">
-          <img src="/assets/images/card.svg" alt="">
-          <h4 class="text-xs text-gray">Мои карты</h4>
+        <NuxtLink to="/card" class="menu__item  flex justify-center items-center flex-col gap-1">
+          <AppIcon icon="card"/>
+          <h4 class="text-xs ">Мои карты</h4>
         </NuxtLink>
-        <NuxtLink to="/profile" class="menu__item flex justify-center items-center flex-col gap-1">
-          <img src="/assets/images/profile.svg" alt="">
-          <h4 class="text-xs text-gray">Профиль</h4>
+        <NuxtLink to="/profile" class="menu__item  flex justify-center items-center flex-col gap-1">
+          <AppIcon icon="user"/>
+          <h4 class="text-xs ">Профиль</h4>
         </NuxtLink>
       </div>
     </Transition>
