@@ -18,8 +18,10 @@ export default {
         "white": "#ffffff",
         "gray-1": "#DFDFDF",
         "black": "#0A0A0A",
+        "dark-blue": "#000A3A",
         "gray": "#627286",
         "green": "#0FB90F",
+        "red": "#F42D2D",
       },
     }
   },

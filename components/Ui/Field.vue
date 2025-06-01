@@ -1,5 +1,5 @@
 <template>
-  <div class="info border border-gray-1 rounded-xl bg-white h-[360px] p-4">
+  <div class="info border border-gray-1 rounded-xl bg-white p-4">
     <slot></slot>
   </div>
 </template>

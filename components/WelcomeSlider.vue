@@ -11,11 +11,10 @@ const swiperRef = ref(null);
 const currentIndex = ref(0);
 
 const swiperToNext = () => {
-  swiperRef.value?.slideNext();
   if (currentIndex.value >= 2) {
-    console.log('finish')
     emit('finished')
-  }
+  } else
+    swiperRef.value.slideNext();
 };
 
 const swiperToPrev = () => {
@@ -37,6 +36,7 @@ const onSlideChange = (swiper) => {
        @click="swiperToPrev">
     <AppIcon icon="back" class="" width="32" height="32"/>
   </div>
+
   <div class="welcome-container relative">
     <swiper
         class="welcome-slider relative"

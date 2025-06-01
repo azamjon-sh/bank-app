@@ -17,9 +17,14 @@
       />
     </div>
 
-    <label class="checkbox mt-4 flex gap-2 items-center text-left">
+    <p class="text-red text-sm">
+      {{ errors}}
+    </p>
+
+    <label class="checkbox mt-4 flex gap-4 items-center text-left cursor-pointer">
       <input type="checkbox" v-model="agreed" class="hidden"/>
-      <span class="checkmark relative min-w-5 w-5 h-5 rounded-md flex items-center justify-center" :class="agreed?'checked bg-green':'bg-gray-1'"></span>
+      <span class="checkmark relative min-w-5 w-5 h-5 rounded-md flex items-center justify-center"
+            :class="agreed?'checked bg-green':'bg-gray-1'"></span>
       <span class="grow text-gray">
         Я соглашаюсь с
         <a href="/policy" class="text-[#0069F2] decoration-transparent" target="_blank">политикой конфиденциальности</a>
@@ -33,6 +38,8 @@
 </template>
 
 <script setup>
+import axios from "axios";
+
 const {$axios} = useNuxtApp()
 
 const props = defineProps({
@@ -40,7 +47,7 @@ const props = defineProps({
     type: String,
   }
 });
-const emit = defineEmits(['sendPhone','update:modelValue']);
+const emit = defineEmits(['sendPhone', 'update:modelValue']);
 const phone = computed({
   get() {
     return props.modelValue;
@@ -49,23 +56,30 @@ const phone = computed({
     emit('update:modelValue', newValue)
   }
 });
-
 const agreed = ref(false)
 
 const formatPhone = () => {
   phone.value = phone.value
-      .replace(/\D/g, '') // только цифры
+      .replace(/\D/g, '')
       .replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4')
       .slice(0, 13)
 }
+const getPhoneForSubmit = () => {
+  const digits = phone.value.replace(/\D/g, '')
+  return '+7' + digits
+}
 
 const isValid = computed(() => phone.value.replace(/\D/g, '').length === 10 && agreed.value)
-
+const errors = ref(null)
 const submit = () => {
-  emit('sendPhone')
+  errors.value = null
   $axios.post('users/signin', {
-    "contact": "+77777775555",
-    "agreementAccepted": true
+    contact: getPhoneForSubmit(),
+    agreementAccepted: agreed.value
+  }).then((response) => {
+    emit('sendPhone', response.data)
+  }).catch((error) => {
+    errors.value = error.response.data.error.description;
   })
 }
 </script>

@@ -3,7 +3,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="menu fixed bottom-0 z-30 w-full bg-white pt-3 pb-9 flex justify-center">
+  <div class="menu fixed bottom-0 z-30 w-full bg-white pt-3 pb-9 flex left-0 justify-center">
     <Transition>
       <div class="menu__grid w-[425px] flex justify-between items-center  ">
         <NuxtLink to="/" class="menu__item  flex justify-center items-center flex-col gap-1">

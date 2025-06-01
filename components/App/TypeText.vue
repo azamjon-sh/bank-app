@@ -2,10 +2,10 @@
   <div class="typing-text">
     <div  class=" max-w-[300px] mt-4">
       <span v-html="displayedText" class="text-gray"></span>
-      <span class="cursor w-5 h-5 rounded-full bg-green pl-5 ml-1 " :class="showCursor?'opacity-1':'opacity-0'"></span>
+      <span class="cursor  rounded-full bg-green pl-5 ml-1 pt-[1px] h-5 leading-[20px]" ></span>
     </div>
     <template v-if="finished">
-      <AppButton class="mt-4" :link="buttonLink">
+      <AppButton class="mt-4" @click="emit('addCard')">
         {{ buttonText }}
       </AppButton>
     </template>
@@ -18,8 +18,9 @@ import {ref, onMounted, onBeforeUnmount} from 'vue'
 const props = defineProps({
   text: String,
   buttonText: String,
-  buttonLink: String,
 })
+
+const emit = defineEmits(['addCard'])
 const displayedText = ref('')
 const showCursor = ref(true)
 const finished = ref(false)
@@ -46,7 +47,7 @@ function typeText() {
       clearInterval(interval)
       startCursorBlink()
     }
-  }, 25)
+  }, 1)
 }
 
 function startCursorBlink() {
