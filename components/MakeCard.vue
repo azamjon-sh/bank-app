@@ -7,7 +7,7 @@ import 'swiper/css/pagination'
 
 const {$axios} = useNuxtApp()
 const cards = ref([])
-const myCard = ref({})
+const myCard = ref(null)
 
 onMounted(() => {
   $axios.get('cards/my').then((res) => {
@@ -87,6 +87,7 @@ const step = ref(1)
 .card-carousel.swiper {
   overflow: unset;
   width: 96%;
+  margin-left: 0;
 
   .swiper-pagination {
     position: relative !important;

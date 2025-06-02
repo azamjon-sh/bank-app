@@ -47,7 +47,7 @@ function typeText() {
       clearInterval(interval)
       startCursorBlink()
     }
-  }, 1)
+  }, 20)
 }
 
 function startCursorBlink() {
