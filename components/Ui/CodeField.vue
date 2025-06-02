@@ -65,9 +65,10 @@ const onInput = (index) => {
   if (code.value[index].length > 0 && index < length - 1) {
     inputs.value[index + 1].focus()
   } else {
+    let codeVal = code.value.join('')
     $axios.post('users/signin/confirm', {
       ...props.phoneData,
-      "code": code.value.join(),
+      "code": codeVal,
       "agreementAccepted": true,
       // "quizToken": "47c4f9bc-b32c-425f-8ff4-81799b1139de",
     }).then((response) => {

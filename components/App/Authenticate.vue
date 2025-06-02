@@ -4,7 +4,7 @@ const showSlider = ref(true)
 
 const phone = ref('')
 const activePhone = ref(true)
-const code = ref('888000')
+const code = ref('')
 const phoneData = ref(null)
 const sendPhone = (data) => {
   activePhone.value = false
