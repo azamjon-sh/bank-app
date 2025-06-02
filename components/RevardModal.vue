@@ -31,7 +31,7 @@ $axios.get(`tasks/${props.activeId}`).then((res) => {
     <div class="rewards-amount bg-green rounded-full text-2xl text-white text-center py-2 px-3 mt-4">
       +{{ task.reward?.value }} {{ task.reward?.currency === 'RUB' ? '₽' : '$' }}
     </div>
-    <AppButton :disabled="!task.button.enabled" :link="task.button.url" class="mt-8">{{ task.button?.title }}
+    <AppButton :disabled="!task.button?.enabled" :link="task.button?.url" class="mt-8">{{ task.button?.title }}
     </AppButton>
   </AppModal>
 </template>
