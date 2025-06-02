@@ -2,24 +2,26 @@
 const {$axios} = useNuxtApp()
 const cards = ref([])
 const myCard = ref(null)
+
 onMounted(() => {
   $axios.get('cards/my').then((res) => {
-    myCard.value = res.data
+    if (res.data.length)
+      myCard.value = res.data
   })
 
   $axios.get('cards/offers').then((res) => {
     cards.value = res.data
-    myCard.value = cards.value[0]
   })
 })
+
 </script>
 
 <template>
   <AppTitle>Мои карты</AppTitle>
   <UiField class="info border border-gray-1 rounded-xl bg-white flex items-center min-h-[84px] mb-6">
-    <span class="text-gray" v-if="!myCard">У вас ещё нет выпущенных карт</span>
+    <span class="text-gray text-center w-full inline-block" v-if="!myCard">У вас ещё нет выпущенных карт</span>
     <div v-else>
-      <div class="card__head flex gap-4 items-center" v-if="myCard">
+      <div class="card__head flex gap-4 items-center">
         <img :src="myCard.imageUrl" alt="" class="w-16 h-16 object-contain object-center">
         <h3 class="card__title text-lg text-black">
           {{ myCard.title }}

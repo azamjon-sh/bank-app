@@ -11,27 +11,28 @@ const myCard = ref({})
 
 onMounted(() => {
   $axios.get('cards/my').then((res) => {
-    myCard.value = res.data
+    if (res.data.length > 0) {
+      myCard.value = res.data
+    }
   })
-
   $axios.get('cards').then((res) => {
     cards.value = res.data
   })
 })
 const textType = 'Твои ежемсячные расходы примерно <span class="text-black font-medium">55 000 ₽.</span> Ты много тратишь на продукты и кафе. Прогнозирую, что помогу тебе экономить <span class="text-black font-medium">4 540 ₽ в месяц.</span><br/> Это <span class="text-black font-medium">8%</span> от твоих расходов. <br/><br/>Начнем с подбора наиболее выгодной банковской карты с учетом структуры твоих покупок.'
-const step = ref(4)
+const step = ref(1)
 </script>
 
 <template>
   <UiField class="mt-6 h-auto min-h-[200px] overflow-x-hidden">
-    <template v-if="step === 1">
+    <template v-if="!myCard && step === 1">
       <h2 class="text-black text-2xl">Первый шаг <br/>к здоровому бюджету</h2>
       <AppTypeText
           @addCard="step = 2"
           :text="textType" buttonText="Подобрать карту">
       </AppTypeText>
     </template>
-    <template v-if="step === 2">
+    <template v-if="!myCard && step === 2">
       <span class="text-gray mb-2">Первый шаг к здоровому бюджету</span>
       <h2 class="text-black text-2xl mb-2">Лучшие варианты с учетом структуры твоих покупок</h2>
       <span class="text-gray">Закажи доставку карты курьером, чтобы разблокировать дальнейшие действия </span>
@@ -48,14 +49,14 @@ const step = ref(4)
       </Swiper>
     </template>
 
-    <template v-if="step === 3">
+    <template v-if="myCard && myCard.status === 'Ordered'">
       <h2 class="text-black text-2xl mb-2">Отлично! Ты уже заказал карту</h2>
 
       <div class="card__head bg-default flex gap-4 mb-4 items-center p-5 rounded-xl mt-4" v-if="cards.length">
-        <img :src="cards[0].imageUrl" alt="" class="w-16 h-16 object-contain object-center">
+        <img :src="myCard.value.imageUrl" alt="" class="w-16 h-16 object-contain object-center">
         <h3 class="card__title text-lg text-black">
-          {{ cards[0].title }}
-          <span class="card__subtitle block text-sm text-gray">{{ cards[0].subtitle }}</span>
+          {{ myCard.value.title }}
+          <span class="card__subtitle block text-sm text-gray">{{ myCard.value.subtitle }}</span>
         </h3>
       </div>
       <span class="text-gray mt-4">
@@ -66,14 +67,14 @@ const step = ref(4)
       <NuxtLink class="text-green decoration-transparent mt-6 inline-block" to="/">Сообщить о проблеме</NuxtLink>
     </template>
 
-    <template v-if="step === 4">
+    <template v-else-if="myCard">
       <h2 class="text-black text-2xl mb-2">Ты подключил карту 🎉</h2>
 
       <div class="card__head bg-default flex gap-4 mb-4 items-center p-5 rounded-xl mt-4" v-if="cards.length">
-        <img :src="cards[0].imageUrl" alt="" class="w-16 h-16 object-contain object-center">
+        <img :src="myCard.value.imageUrl" alt="" class="w-16 h-16 object-contain object-center">
         <h3 class="card__title text-lg text-black">
-          {{ cards[0].title }}
-          <span class="card__subtitle block text-sm text-gray">{{ cards[0].subtitle }}</span>
+          {{ myCard.value.title }}
+          <span class="card__subtitle block text-sm text-gray">{{ myCard.value.subtitle }}</span>
         </h3>
       </div>
       <span class="text-gray mt-4">Ознакомьтесь с действующими акциями</span>
